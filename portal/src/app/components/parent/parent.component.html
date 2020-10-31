@@ -1,0 +1,54 @@
+<mat-card class="mt-5" >
+  <mat-card-content>
+    <mat-card-title>
+      <h4 class="text-center">PARENT RECORDS</h4>
+    </mat-card-title>
+            
+    <div  class="responsive-table mes-pad-t-10">
+      <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+          <mat-cell *matCellDef="let row" >
+            <span *ngIf="row!='undefined'">{{row.id}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="sender">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> sender </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+          <span *ngIf="row!='undefined'"> {{row.senderName}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="receiver">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Receiver </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <span *ngIf="row!='undefined'">{{row.receiverName}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="totalAmount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="justify-content-center"> Total Amount </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="justify-content-center">
+            <span *ngIf="row!='undefined'">{{row.totalAmount}}</span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalPaidAmount">
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="justify-content-center"> Total Paid Amount </mat-header-cell>
+          <mat-cell *matCellDef="let row" class="justify-content-center">
+            <span *ngIf="row!='undefined'"> <a style="cursor: pointer;" [routerLink]="['/child',row.id]"> {{row.totalPaidAmount}}</a></span>
+          </mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+    </div>
+    <mat-paginator [length]="totalRecords" [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 8, 10]"
+                  showFirstLastButtons>
+              </mat-paginator>
+
+
+  </mat-card-content>
+</mat-card> 
+
+
